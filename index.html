@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Adam Hammoud</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+
+<style>
+  :root {
+    --navy: #00274C;
+    --maize: #FFCB05;
+    --maize-dark: #e0b200;
+    --white: #ffffff;
+    --off-white: #f7f4f0;
+    --light-gray: #ece9e4;
+    --text: #111111;
+    --text-muted: #666;
+    --card-bg: #ffffff;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--off-white);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: var(--navy);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 2.5rem;
+    height: 56px;
+    border-bottom: 3px solid var(--maize);
+  }
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5rem;
+    color: var(--maize);
+    letter-spacing: 0.05em;
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: rgba(255,255,255,0.75);
+    text-decoration: none;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--maize); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    background: var(--navy);
+    display: flex; align-items: center;
+    padding: 7rem 2.5rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-bg-text {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(8rem, 22vw, 20rem);
+    color: rgba(255, 203, 5, 0.04);
+    white-space: nowrap;
+    pointer-events: none;
+    user-select: none;
+    letter-spacing: -0.02em;
+  }
+  .hero-inner { max-width: 900px; position: relative; z-index: 1; }
+  .hero-tag {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(255,203,5,0.12);
+    border: 1px solid rgba(255,203,5,0.3);
+    color: var(--maize);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 100px;
+    margin-bottom: 1.5rem;
+  }
+  .hero-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--maize); animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:0.3;} }
+
+  .hero h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3.5rem, 9vw, 7.5rem);
+    color: var(--white);
+    line-height: 0.95;
+    letter-spacing: 0.02em;
+    margin-bottom: 1.5rem;
+  }
+  .hero h1 span { color: var(--maize); display: block; }
+
+  .hero-sub {
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    color: rgba(255,255,255,0.65);
+    max-width: 540px;
+    line-height: 1.7;
+    margin-bottom: 2.5rem;
+    font-weight: 300;
+  }
+  .hero-sub strong { color: rgba(255,255,255,0.9); font-weight: 500; }
+
+  .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--maize);
+    color: var(--navy);
+    font-weight: 500;
+    font-size: 0.9rem;
+    padding: 0.75rem 1.75rem;
+    border-radius: 6px;
+    text-decoration: none;
+    letter-spacing: 0.03em;
+    transition: background 0.2s, transform 0.15s;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: var(--maize-dark); transform: translateY(-2px); }
+  .btn-outline {
+    border: 1.5px solid rgba(255,255,255,0.3);
+    color: rgba(255,255,255,0.85);
+    font-size: 0.9rem;
+    padding: 0.75rem 1.75rem;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: border-color 0.2s, color 0.2s, transform 0.15s;
+    display: inline-block;
+  }
+  .btn-outline:hover { border-color: var(--maize); color: var(--maize); transform: translateY(-2px); }
+
+  .hero-stats {
+    display: flex; gap: 2.5rem;
+    margin-top: 4rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    flex-wrap: wrap;
+  }
+  .stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.2rem;
+    color: var(--maize);
+    line-height: 1;
+  }
+  .stat-label { font-size: 0.75rem; color: rgba(255,255,255,0.5); margin-top: 2px; letter-spacing: 0.05em; text-transform: uppercase; }
+
+  /* SECTIONS */
+  section { padding: 6rem 2.5rem; }
+  .section-inner { max-width: 1000px; margin: 0 auto; }
+
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--navy);
+    background: var(--maize);
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 3px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    font-weight: 500;
+  }
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    color: var(--navy);
+    line-height: 1;
+    margin-bottom: 3rem;
+    letter-spacing: 0.02em;
+  }
+
+  /* PROJECTS */
+  #projects { background: var(--off-white); }
+  .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+
+  .project-card {
+    background: var(--white);
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--light-gray);
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: flex; flex-direction: column;
+  }
+  .project-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,39,76,0.12); }
+
+  .project-card.featured {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .card-accent {
+    height: 5px;
+    background: var(--navy);
+  }
+  .project-card.featured .card-accent { display: none; }
+
+  .card-sidebar {
+    background: var(--navy);
+    padding: 2rem;
+    display: flex; flex-direction: column; justify-content: space-between;
+  }
+  .card-sidebar-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--maize);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+  .card-sidebar h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    color: var(--white);
+    line-height: 1.1;
+    letter-spacing: 0.02em;
+  }
+  .card-sidebar p {
+    color: rgba(255,255,255,0.6);
+    font-size: 0.85rem;
+    line-height: 1.6;
+    margin-top: 0.75rem;
+    font-weight: 300;
+  }
+  .card-link {
+    display: inline-flex; align-items: center; gap: 6px;
+    color: var(--maize);
+    font-size: 0.8rem;
+    font-weight: 500;
+    text-decoration: none;
+    margin-top: 1.5rem;
+    letter-spacing: 0.05em;
+    transition: gap 0.2s;
+  }
+  .card-link:hover { gap: 10px; }
+
+  .card-body { padding: 1.5rem; flex: 1; display: flex; flex-direction: column; }
+  .card-body h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem;
+    color: var(--navy);
+    letter-spacing: 0.02em;
+    margin-bottom: 0.5rem;
+  }
+  .card-body p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; font-weight: 300; flex: 1; }
+  .card-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 1.25rem; }
+  .tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    background: var(--off-white);
+    color: var(--navy);
+    border: 1px solid var(--light-gray);
+    padding: 3px 8px;
+    border-radius: 4px;
+    letter-spacing: 0.03em;
+  }
+
+  .card-metrics {
+    display: flex; gap: 1.5rem;
+    padding: 1.25rem 1.5rem;
+    border-top: 1px solid var(--light-gray);
+  }
+  .metric-val {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem;
+    color: var(--navy);
+    line-height: 1;
+  }
+  .metric-label { font-size: 0.68rem; color: var(--text-muted); margin-top: 1px; text-transform: uppercase; letter-spacing: 0.05em; }
+
+  /* EXPERIENCE */
+  #experience { background: var(--navy); }
+  #experience .section-title { color: var(--white); }
+
+  .exp-list { display: flex; flex-direction: column; gap: 1px; }
+  .exp-item {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 10px;
+    padding: 1.75rem 2rem;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 1rem;
+    transition: background 0.2s;
+    margin-bottom: 1rem;
+  }
+  .exp-item:hover { background: rgba(255,203,5,0.05); border-color: rgba(255,203,5,0.2); }
+  .exp-role {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem;
+    color: var(--white);
+    letter-spacing: 0.02em;
+  }
+  .exp-org { font-size: 0.85rem; color: var(--maize); margin-top: 2px; font-weight: 500; }
+  .exp-desc { font-size: 0.82rem; color: rgba(255,255,255,0.5); margin-top: 0.75rem; line-height: 1.6; font-weight: 300; max-width: 600px; }
+  .exp-date {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    color: rgba(255,255,255,0.35);
+    text-align: right;
+    white-space: nowrap;
+    padding-top: 4px;
+  }
+  .exp-badge {
+    display: inline-block;
+    background: rgba(255,203,5,0.15);
+    color: var(--maize);
+    font-size: 0.68rem;
+    font-weight: 500;
+    padding: 3px 10px;
+    border-radius: 100px;
+    margin-top: 0.75rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    border: 1px solid rgba(255,203,5,0.25);
+  }
+
+  /* SKILLS */
+  #skills { background: var(--off-white); }
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.25rem; }
+  .skill-group {
+    background: var(--white);
+    border-radius: 10px;
+    border: 1px solid var(--light-gray);
+    padding: 1.5rem;
+  }
+  .skill-group-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    color: var(--maize-dark);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 1rem;
+    font-weight: 500;
+  }
+  .skill-item {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 0.85rem;
+    color: var(--text);
+    padding: 4px 0;
+    border-bottom: 1px solid var(--off-white);
+  }
+  .skill-item:last-child { border-bottom: none; }
+  .skill-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--navy); flex-shrink: 0; }
+
+  /* CONTACT */
+  #contact {
+    background: var(--navy);
+    text-align: center;
+  }
+  #contact .section-title { color: var(--white); margin-bottom: 1rem; }
+  .contact-sub { color: rgba(255,255,255,0.5); font-size: 1rem; margin-bottom: 2.5rem; font-weight: 300; }
+  .contact-links { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+  .contact-link {
+    display: flex; align-items: center; gap: 8px;
+    border: 1px solid rgba(255,255,255,0.15);
+    color: rgba(255,255,255,0.8);
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 0.85rem;
+    transition: border-color 0.2s, color 0.2s, background 0.2s;
+    font-weight: 500;
+  }
+  .contact-link:hover { border-color: var(--maize); color: var(--maize); background: rgba(255,203,5,0.06); }
+
+  /* FOOTER */
+  footer {
+    background: #001832;
+    padding: 1.5rem 2.5rem;
+    display: flex; align-items: center; justify-content: space-between;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+  footer p { font-size: 0.75rem; color: rgba(255,255,255,0.25); }
+  footer span {
+    font-family: 'Bebas Neue', sans-serif;
+    color: var(--maize);
+    font-size: 1rem;
+    letter-spacing: 0.05em;
+  }
+
+  /* ANIMATIONS */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.55s ease, transform 0.55s ease;
+  }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+  .fade-up:nth-child(2) { transition-delay: 0.08s; }
+  .fade-up:nth-child(3) { transition-delay: 0.16s; }
+  .fade-up:nth-child(4) { transition-delay: 0.24s; }
+
+  @media (max-width: 680px) {
+    .project-card.featured { grid-template-columns: 1fr; }
+    .card-sidebar { padding: 1.5rem; }
+    nav { padding: 0 1.25rem; }
+    .nav-links { gap: 1rem; }
+    section { padding: 4rem 1.25rem; }
+    .hero { padding: 6rem 1.25rem 3rem; }
+    .exp-item { grid-template-columns: 1fr; }
+    .exp-date { text-align: left; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">AH</div>
+  <ul class="nav-links">
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg-text">ADAM</div>
+  <div class="hero-inner">
+    <div class="hero-tag">
+      <span class="hero-dot"></span>
+      Open to Fall 2026 Internships
+    </div>
+    <h1>
+      Adam
+      <span>Hammoud.</span>
+    </h1>
+    <p class="hero-sub">
+      Software Engineering student at <strong>University of Michigan-Dearborn</strong> building toward AI engineering.
+      I build things that work — from RAG pipelines to rocket telemetry systems.
+    </p>
+    <div class="hero-actions">
+      <a href="#projects" class="btn-primary">View My Work</a>
+      <a href="https://linkedin.com/in/adam-hammoud-66936632a" target="_blank" class="btn-outline">LinkedIn</a>
+      <a href="https://github.com/adamh36" target="_blank" class="btn-outline">GitHub</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num">3.94</div>
+        <div class="stat-label">GPA</div>
+      </div>
+      <div>
+        <div class="stat-num">20+</div>
+        <div class="stat-label">Team Members Led</div>
+      </div>
+      <div>
+        <div class="stat-num">1,370</div>
+        <div class="stat-label">Vectors Indexed</div>
+      </div>
+      <div>
+        <div class="stat-num">42nd</div>
+        <div class="stat-label">of 150 Teams Nationally</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-inner">
+    <div class="section-label">Work</div>
+    <h2 class="section-title">Projects</h2>
+    <div class="projects-grid">
+
+      <!-- Featured: UMD Assistant -->
+      <div class="project-card featured fade-up">
+        <div class="card-sidebar">
+          <div>
+            <div class="card-sidebar-label">Featured Project</div>
+            <h3>UMD Student Assistant</h3>
+            <p>A full RAG pipeline that lets UM-Dearborn students ask natural language questions about admissions, academics, and campus life — answered strictly from scraped university data.</p>
+            <div class="card-tags" style="margin-top:1rem;">
+              <span class="tag" style="background:rgba(255,203,5,0.12);color:var(--maize);border-color:rgba(255,203,5,0.2);">Python</span>
+              <span class="tag" style="background:rgba(255,203,5,0.12);color:var(--maize);border-color:rgba(255,203,5,0.2);">ChromaDB</span>
+              <span class="tag" style="background:rgba(255,203,5,0.12);color:var(--maize);border-color:rgba(255,203,5,0.2);">Claude API</span>
+              <span class="tag" style="background:rgba(255,203,5,0.12);color:var(--maize);border-color:rgba(255,203,5,0.2);">Streamlit</span>
+            </div>
+          </div>
+          <a href="https://github.com/adamh36/umd-assistant" target="_blank" class="card-link">
+            View on GitHub &rarr;
+          </a>
+        </div>
+        <div style="display:flex;flex-direction:column;">
+          <div class="card-body" style="flex:1;">
+            <h3 style="font-size:1rem;margin-bottom:1rem;">How it works</h3>
+            <div style="display:flex;flex-direction:column;gap:0.75rem;">
+              <div style="display:flex;gap:10px;align-items:flex-start;">
+                <div style="width:22px;height:22px;border-radius:50%;background:var(--navy);color:white;font-size:0.65rem;display:flex;align-items:center;justify-content:center;font-weight:500;flex-shrink:0;margin-top:1px;">1</div>
+                <p style="font-size:0.82rem;margin:0;">Scraped 100+ pages from umdearborn.edu with BeautifulSoup, chunked into 1,370 vectors at 500 chars with 50-char overlap</p>
+              </div>
+              <div style="display:flex;gap:10px;align-items:flex-start;">
+                <div style="width:22px;height:22px;border-radius:50%;background:var(--navy);color:white;font-size:0.65rem;display:flex;align-items:center;justify-content:center;font-weight:500;flex-shrink:0;margin-top:1px;">2</div>
+                <p style="font-size:0.82rem;margin:0;">Query converts to embedding, retrieves top-3 semantically similar chunks from ChromaDB</p>
+              </div>
+              <div style="display:flex;gap:10px;align-items:flex-start;">
+                <div style="width:22px;height:22px;border-radius:50%;background:var(--navy);color:white;font-size:0.65rem;display:flex;align-items:center;justify-content:center;font-weight:500;flex-shrink:0;margin-top:1px;">3</div>
+                <p style="font-size:0.82rem;margin:0;">Claude API generates a grounded answer using only the retrieved context, no hallucinations</p>
+              </div>
+            </div>
+          </div>
+          <div class="card-metrics">
+            <div>
+              <div class="metric-val">1,370</div>
+              <div class="metric-label">Vectors</div>
+            </div>
+            <div>
+              <div class="metric-val">100+</div>
+              <div class="metric-label">Pages Scraped</div>
+            </div>
+            <div>
+              <div class="metric-val">Top-3</div>
+              <div class="metric-label">Retrieval</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- DriveShare -->
+      <div class="project-card fade-up">
+        <div class="card-accent"></div>
+        <div class="card-body">
+          <h3>DriveShare</h3>
+          <p>Peer-to-peer car rental platform built with a 3-person team. Led architecture, designed the 8-table SQLite schema, and implemented 6 software design patterns across the codebase.</p>
+          <div class="card-tags">
+            <span class="tag">Python</span>
+            <span class="tag">Tkinter</span>
+            <span class="tag">SQLite</span>
+            <span class="tag">bcrypt</span>
+          </div>
+        </div>
+        <div class="card-metrics">
+          <div>
+            <div class="metric-val">6</div>
+            <div class="metric-label">Design Patterns</div>
+          </div>
+          <div>
+            <div class="metric-val">8</div>
+            <div class="metric-label">DB Tables</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- File Integrity Monitor -->
+      <div class="project-card fade-up">
+        <div class="card-accent" style="background:var(--maize);"></div>
+        <div class="card-body">
+          <h3>File Integrity Monitor</h3>
+          <p>Built the full frontend for a file integrity monitoring system — 6 views covering baseline creation, scan execution, and diff comparison. Collaborated with a C# backend developer.</p>
+          <div class="card-tags">
+            <span class="tag">HTML</span>
+            <span class="tag">CSS</span>
+            <span class="tag">JavaScript</span>
+            <span class="tag">ASP.NET MVC</span>
+          </div>
+        </div>
+        <div class="card-metrics">
+          <div>
+            <div class="metric-val">6</div>
+            <div class="metric-label">Views Built</div>
+          </div>
+          <div>
+            <div class="metric-val">CIS435</div>
+            <div class="metric-label">Course</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-inner">
+    <div class="section-label" style="background:rgba(255,203,5,0.15);color:var(--maize);">Career</div>
+    <h2 class="section-title">Experience</h2>
+    <div class="exp-list">
+
+      <div class="exp-item fade-up">
+        <div>
+          <div class="exp-role">Software Engineering Team Lead</div>
+          <div class="exp-org">Michigan Aeronautical Science Association (MASA)</div>
+          <div class="exp-desc">Led 20+ member software team building real-time telemetry dashboards, dual-camera systems, and avionics software using PlatformIO, I2C, and SPI. Cut hardware/software integration time by 40%. Contributed to a top 30% finish (42nd of 150 teams) at the 2025 Spaceport America Cup.</div>
+          <span class="exp-badge">Team Lead</span>
+        </div>
+        <div class="exp-date">Jan 2025 &ndash; Aug 2025</div>
+      </div>
+
+      <div class="exp-item fade-up">
+        <div>
+          <div class="exp-role">Project Lead Developer</div>
+          <div class="exp-org">Michigan Aeronautical Science Association (MASA)</div>
+          <div class="exp-desc">Built Python-based onboard video system on Raspberry Pi enabling MASA's first in-flight live video. Developed a fault-tolerant H.264 pipeline with circular buffer, achieving 1080p streaming within a 2 Mbps RF cap with 90% improved reliability.</div>
+          <span class="exp-badge">Developer</span>
+        </div>
+        <div class="exp-date">Sep 2024 &ndash; Feb 2025</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-inner">
+    <div class="section-label">Stack</div>
+    <h2 class="section-title">Skills</h2>
+    <div class="skills-grid">
+      <div class="skill-group fade-up">
+        <div class="skill-group-label">Languages</div>
+        <div class="skill-item"><span class="skill-dot"></span>Python</div>
+        <div class="skill-item"><span class="skill-dot"></span>SQL</div>
+        <div class="skill-item"><span class="skill-dot"></span>HTML / CSS</div>
+        <div class="skill-item"><span class="skill-dot"></span>JavaScript</div>
+        <div class="skill-item"><span class="skill-dot"></span>C++</div>
+      </div>
+      <div class="skill-group fade-up">
+        <div class="skill-group-label">AI / Data</div>
+        <div class="skill-item"><span class="skill-dot"></span>RAG Pipelines</div>
+        <div class="skill-item"><span class="skill-dot"></span>Anthropic Claude API</div>
+        <div class="skill-item"><span class="skill-dot"></span>ChromaDB</div>
+        <div class="skill-item"><span class="skill-dot"></span>NumPy &amp; Pandas</div>
+        <div class="skill-item"><span class="skill-dot"></span>Streamlit</div>
+      </div>
+      <div class="skill-group fade-up">
+        <div class="skill-group-label">Tools</div>
+        <div class="skill-item"><span class="skill-dot"></span>Git / GitHub</div>
+        <div class="skill-item"><span class="skill-dot"></span>VS Code</div>
+        <div class="skill-item"><span class="skill-dot"></span>Raspberry Pi</div>
+        <div class="skill-item"><span class="skill-dot"></span>PlatformIO</div>
+        <div class="skill-item"><span class="skill-dot"></span>SQLite</div>
+      </div>
+      <div class="skill-group fade-up">
+        <div class="skill-group-label">Concepts</div>
+        <div class="skill-item"><span class="skill-dot"></span>OOP</div>
+        <div class="skill-item"><span class="skill-dot"></span>Design Patterns</div>
+        <div class="skill-item"><span class="skill-dot"></span>REST APIs</div>
+        <div class="skill-item"><span class="skill-dot"></span>Agile / Scrum</div>
+        <div class="skill-item"><span class="skill-dot"></span>Database Design</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-inner">
+    <div class="section-label" style="background:rgba(255,203,5,0.15);color:var(--maize);">Get In Touch</div>
+    <h2 class="section-title">Let's Talk.</h2>
+    <p class="contact-sub">Looking for Fall 2026 internship opportunities in AI engineering.</p>
+    <div class="contact-links">
+      <a href="mailto:ahamoud@umich.edu" class="contact-link">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg>
+        ahamoud@umich.edu
+      </a>
+      <a href="https://linkedin.com/in/adam-hammoud-66936632a" target="_blank" class="contact-link">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        LinkedIn
+      </a>
+      <a href="https://github.com/adamh36" target="_blank" class="contact-link">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+        github.com/adamh36
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>Built by Adam Hammoud &mdash; 2025</p>
+  <span>GO BLUE</span>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
